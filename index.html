@@ -1,28 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css" />
-<script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
+<link rel="stylesheet" href="/leaflet-routing-machine/css/leaflet-routing-machine.css" />
 <link rel="stylesheet" href="style.css">
+<script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
 </head>
 <body>
-		<div class="controlPanel">
-			<button id='getAll'> See all the Parks in SF! </button>
-			<ul id='getType'> See all the Parks in SF! 
-				<li><button class='type' id='Mini Park'>Mini Park</button></li>
-				<li><button class='type' id='Neighborhood Park or Playground'>Neighborhood Park or Playground</button></li>
-				<li><button class='type' id='Civic Plaza or Square'>Civic Plaza or Square</button></li>
-				<li><button class='type' id='Neighborhood Park or Playground'>Community Garden</button></li>
-				<li><button class='type' id='Concession'>Concession</button></li>
-				<li><button class='type' id='Parkway'>Parkway</button></li>
-				<li><button class='type' id='Regional Park'>Regional Park</button></li>
-				<li><button class='type' id='Zoological Garden'>Zoological Garden</button></li>
-				<li><button id='remove'>Clear Map</button></li>
-			</ul>
-		</div>
-	<div class='controlPanel'>hello</div>
+	<div class="controlPanel">
+		<button id='getAll'> See all the Parks in SF! </button>
+		<button id='remove'>Clear Map</button>
+		<div class="btn-group" id='getAll'>
+			<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+			   What type of Park are you looking for?
+			   <span class="caret"></span>
+			</a>
+		<ul class="dropdown-menu" id='getType'>
+			<li><a class='type' id='Mini Park'>Mini Park</a></li>
+			<li><a class='type' id='Neighborhood Park or Playground'>Neighborhood Park or Playground</a></li>
+			<li><a class='type' id='Civic Plaza or Square'>Civic Plaza or Square</a></li>
+			<li><a class='type' id='Neighborhood Park or Playground'>Community Garden</a></li>
+			<li><a class='type' id='Concession'>Concession</a></li>
+			<li><a class='type' id='Parkway'>Parkway</a></li>
+			<li><a class='type' id='Regional Park'>Regional Park</a></li>
+			<li><a class='type' id='Zoological Garden'>Zoological Garden</a></li>
+		</ul>
+		<button id='itinerary'>Define Itinerary</button>
+		<div class='itineraryOutput' id='pointA' div>FROM :</div>
+		<div class='itineraryOutput' id='pointB' div>TO :</div>
+		<button id='clearItinerary'> Clear the itinerary</button>
+	</div>
 	<div id="map"></div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="index.js"></script>
 </body>
 </html>

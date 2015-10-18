@@ -1,4 +1,11 @@
 var map;
+var currentDataArr = [];
+
+// itinerary tracker array for location A and B
+var itineraryArr = [];
+var trackerOpen = false;
+var currentRoute;
+
 // define map
 function initialize () {
 	map = L.map('map').setView([37.78184397, -122.46809908], 13);
@@ -12,13 +19,54 @@ function initialize () {
 
 initialize()
 
+
+
+function findNameByLocation (locationArr) {
+	var locationToGet = {};
+	currentDataArr.forEach(function (location) {
+		if (Number(location.Geo[0]) == Number(locationArr[0]) 
+			&& Number(location.Geo[1]) == Number(locationArr[1])) {
+			locationToGet = location
+		}
+	})
+	return locationToGet;
+}
+
+// give itinerary from A to B
+function createRoute (arrOfLocations) {
+	currentRoute = L.Routing.control({
+	  waypoints: [
+	    L.latLng(arrOfLocations[0].Geo[0], arrOfLocations[0].Geo[1]),
+	    L.latLng(arrOfLocations[1].Geo[0], arrOfLocations[1].Geo[1])
+	  ]
+	}).addTo(map);
+}
+
+// tracks both locations of an itinerary
+function trackLocations () {
+	var pointSelected = [this._latlng.lat, this._latlng.lng]
+	if (trackerOpen && itineraryArr.length < 2) {
+		var location = findNameByLocation(pointSelected)
+		itineraryArr.push(location)
+	}
+	// display names of parks A and B on front-end
+	if (itineraryArr[0]) $( '#pointA' ).html(itineraryArr[0].ParkName)
+	if (itineraryArr[1]) $( '#pointB' ).html(itineraryArr[1].ParkName)
+	if (itineraryArr.length === 2) {
+		// build the route on the interface
+		createRoute(itineraryArr)
+	}
+}
+
+
 function getData (type, fn) {
 	$.ajax({
 	    type: "GET",
 	    url: "/" + type,
 	    dataType: 'json',
 	    success: function (arr) {
-	    	// console.log(arr)
+	    	// reinitinialize tracker arr and push values to it
+			currentDataArr = []
 	    	arr.forEach(fn)
 	    }
 	});
@@ -26,8 +74,17 @@ function getData (type, fn) {
 
 // helper function : add items to the map
 function addToMap (point) {
-	// add all points to the map
-	var marker = L.marker(point.Geo).addTo(map);
+	currentDataArr.push(point)
+	// add points to the map
+	var marker = L.marker(point.Geo
+		// , {
+				 // title: point.ParkName
+				// }
+	).addTo(map);
+	// add popup on each marker
+	marker.bindPopup(point.ParkName)
+	// add click event for itinerary
+	marker.on('click', trackLocations)
 }
 
 // on clicking button 'getAll', fetch data from API, and add to map
@@ -50,5 +107,15 @@ $( "#remove" ).on('click', function() {
     initialize();
 });
 
+// L.marker([10.496093,-66.881935]).addTo(map).on('mouseover', onClick);
 
+// open tracker to start tracking or itinerary
+$( "#itinerary" ).on('click', function() {
+	trackerOpen = true;
+});
 
+// clear the itinerary
+$( "#clearItinerary" ).on('click', function() {
+	itineraryArr = [];
+	map.removeControl(currentRoute)
+});

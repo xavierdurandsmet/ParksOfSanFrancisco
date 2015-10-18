@@ -13,6 +13,7 @@ var Converter = require("csvtojson").Converter;
 var converter = new Converter({});
 
 app.use(express.static(__dirname +'/public'));
+app.use(express.static(__dirname +'/node_modules'));
 
 app.get('/', function(req, res, next){
 	var index = path.join(__dirname, 'index.html');

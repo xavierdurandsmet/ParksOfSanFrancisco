@@ -20,7 +20,7 @@ body {
 	height:100vh;
 	/*background-color:#222B30;*/
 	float:left;
-	color:white;
+	color:black;
 	font-size:1.1em;
 	/*border:2px solid #43BFE0;*/
 }
@@ -71,3 +71,8 @@ button {
 #marker {
 	fill: yellow;
 }
+
+.leaflet-popup-content-wrapper {
+  color: #000
+}
+
