@@ -11,30 +11,32 @@
 <script src="/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
 </head>
 <body>
-	<div class="controlPanel">
-		<button id='getAll'> See all the Parks in SF! </button>
-		<button id='remove'>Clear Map</button>
-		<div class="btn-group" id='getAll'>
-			<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-			   What type of Park are you looking for?
-			   <span class="caret"></span>
-			</a>
-		<ul class="dropdown-menu" id='getType'>
-			<li><a class='type' id='Mini Park'>Mini Park</a></li>
-			<li><a class='type' id='Neighborhood Park or Playground'>Neighborhood Park or Playground</a></li>
-			<li><a class='type' id='Civic Plaza or Square'>Civic Plaza or Square</a></li>
-			<li><a class='type' id='Neighborhood Park or Playground'>Community Garden</a></li>
-			<li><a class='type' id='Concession'>Concession</a></li>
-			<li><a class='type' id='Parkway'>Parkway</a></li>
-			<li><a class='type' id='Regional Park'>Regional Park</a></li>
-			<li><a class='type' id='Zoological Garden'>Zoological Garden</a></li>
-		</ul>
-		<button id='itinerary'>Define Itinerary</button>
-		<div class='itineraryOutput' id='pointA' div>FROM :</div>
-		<div class='itineraryOutput' id='pointB' div>TO :</div>
-		<button id='clearItinerary'> Clear the itinerary</button>
-	</div>
 	<div id="map"></div>
+	<div class="controlPanel">
+		<p> See all parks </p>
+		<button id='getAll'> See all the parks in SF! </button>
+		   <p> Looking for a specific type of park? </p>
+		<div id='typeList'>
+			<button class='type' id='Mini Park'>Mini Park</button>
+			<button class='type' id='Neighborhood Park or Playground'>Neighborhood Park or Playground</button>
+			<button class='type' id='Civic Plaza or Square'>Civic Plaza or Square</button>
+			<button class='type' id='Neighborhood Park or Playground'>Community Garden</button>
+			<button class='type' id='Concession'>Concession</button>
+			<button class='type' id='Parkway'>Parkway</button>
+			<button class='type' id='Regional Park'>Regional Park</button>
+			<button class='type' id='Zoological Garden'>Zoological Garden</button>
+		</div>
+		<p> Find your itinerary between 2 parks </p>
+		<button id='itinerary'>Define Itinerary</button>
+		<div class='trip'>
+			FROM : <span class='itineraryOutput' id='pointA'>Click on a Park Location!</span>
+		</div>
+		<div class='trip'>
+			TO : <span class='itineraryOutput' id='pointB'>Click on a Park Location!</span>
+		</div>
+		<button id='clearItinerary'> Clear the itinerary</button>
+		<button id='remove'>Clear Map</button>
+	</div>
 <script src="index.js"></script>
 </body>
 </html>

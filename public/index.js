@@ -1,5 +1,6 @@
 var map;
 var currentDataArr = [];
+initialize()
 
 // itinerary tracker array for location A and B
 var itineraryArr = [];
@@ -16,10 +17,6 @@ function initialize () {
 	    accessToken: 'pk.eyJ1IjoieGF2aWVyZHVyYW5kc21ldCIsImEiOiJjaWZydDE4aHMwa3Vpb2VrcmUzb3kzbXM3In0.DoEPjbGQyixQv69OX9t63g'
 	}).addTo(map);
 }
-
-initialize()
-
-
 
 function findNameByLocation (locationArr) {
 	var locationToGet = {};
@@ -58,7 +55,6 @@ function trackLocations () {
 	}
 }
 
-
 function getData (type, fn) {
 	$.ajax({
 	    type: "GET",
@@ -76,11 +72,7 @@ function getData (type, fn) {
 function addToMap (point) {
 	currentDataArr.push(point)
 	// add points to the map
-	var marker = L.marker(point.Geo
-		// , {
-				 // title: point.ParkName
-				// }
-	).addTo(map);
+	var marker = L.marker(point.Geo).addTo(map);
 	// add popup on each marker
 	marker.bindPopup(point.ParkName)
 	// add click event for itinerary
@@ -107,15 +99,17 @@ $( "#remove" ).on('click', function() {
     initialize();
 });
 
-// L.marker([10.496093,-66.881935]).addTo(map).on('mouseover', onClick);
-
 // open tracker to start tracking or itinerary
 $( "#itinerary" ).on('click', function() {
 	trackerOpen = true;
+	$( '.trip, #clearItinerary' ).css({ 'display' : 'block'});
+	// $( '#clearItinerary' ).css({ 'display' : 'block'});
 });
 
 // clear the itinerary
 $( "#clearItinerary" ).on('click', function() {
+	$( '.trip, #clearItinerary' ).css({ 'display' : 'none'});
+	// $( '#clearItinerary' ).css({ 'display' : 'none'});
 	itineraryArr = [];
-	map.removeControl(currentRoute)
+	map.removeControl(currentRoute);
 });

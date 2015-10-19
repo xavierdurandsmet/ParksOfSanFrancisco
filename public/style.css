@@ -1,71 +1,49 @@
 body {
-	/*font-family: 'Roboto', sans-serif;*/
-	font-family: 'Lato', sans-serif;
-	/*background: #222B30;*/
-	color: #C3C0CA;
+	font-family: "Open Sans",Helvetica,Arial,sans-serif;
+	-webkit-font-smoothing: antialiased;
+	font-size: 14px;
 	margin: 0;
   	padding: 0;
   	height: 100%;
+  	color: #4c9fcd;
 }
 
 #map { 
-	width:70vw;
+	width:80vw;
 	height:100vh;
 	float:left;
 }
 
 .controlPanel {
 	z-index: 2;
-	width:24vw;
+	width:19vw;
 	height:100vh;
-	/*background-color:#222B30;*/
 	float:left;
-	color:black;
 	font-size:1.1em;
 	/*border:2px solid #43BFE0;*/
 }
 
-.controlPanel p { 
-	display: inline 
-}
+#remove {}
 
-.controlPanel h3 { 
-	display: inline 
-}
-.controlPanel h2 { 
-	display: inline-block;
-	margin:0;
-	padding-left:9px;
-}
-
-
-.header{
+button, li, #typeList {
+	width: 100%;
 	text-align: center;
-	margin:none;
-	padding:15px 5px 15px 5px;
-	background-color: #266490;
-	color:white;
-	font-size:2em;
-	font-weight:bold;
-}
-.subheader {
-	padding:5px;
-	background-color: #3386C0;
-	color:white;
-	font-size: 1.6em;
-	text-align: center;
+	color: rgba(158,158,158,1.0);
+	background-color:#F8F8F8;
+	font-size: 14px;
+    font-weight: 600;
+	border: 1px solid #e5e5e5;
+	margin-left: 3%;
+	margin-right: 3%;
+	margin-top: 5%;
+	margin-bottom: 5%;
+	border-radius: 4px;
 }
 
-.content {
-	padding:5px 5px 5px 10px;
-}
-
-button {
-	color: #4ABFDE;
-	border: 1px solid #4ABFDE;
-	background:none;
-	font-size:1.1em;
-	border-radius:3px;
+button:focus {
+	background-color: #4c9fcd;
+	color:white;
+	outline:none;
 }
 
 #marker {
@@ -73,6 +51,35 @@ button {
 }
 
 .leaflet-popup-content-wrapper {
-  color: #000
+  background: #000
 }
+
+#typeList {
+	overflow-y: auto;
+	height: 25vh;
+	border: 3px solid #F8F8F8;
+	border-radius: 4px;
+}
+
+#typeList button {
+	margin-left: 3%;
+	margin-right: 3%;
+	margin-top: 2%;
+	margin-bottom: 2%;
+
+}
+
+p {
+	margin-left: 2%;
+}
+
+.itineraryOutput {
+	font-style: italic;
+	font-size: 10px;
+}
+
+.trip, #clearItinerary {
+	display: none;
+}
+
 

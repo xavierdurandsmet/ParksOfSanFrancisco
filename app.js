@@ -7,7 +7,7 @@ var path = require("path");
 // connect to models in db
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/lovely');
-var BikeParking = require('./db/models.js')
+var ParkLocation = require('./db/models.js')
 //Converter Class 
 var Converter = require("csvtojson").Converter;
 var converter = new Converter({});
@@ -31,7 +31,7 @@ function setToDB (arr) {
 		var final = location.map(function (str) {
 			return Number(str);
 		})
-		BikeParking.create({
+		ParkLocation.create({
 			ParkName: arr[i].ParkName,
 			ParkType: arr[i].ParkType,
 			ParkServiceArea: arr[i].ParkServiceArea,
@@ -54,7 +54,7 @@ converter.on("end_parsed", function (jsonArray) {
 
 // get all data
 app.get('/allData', function (req, res, next) {
-	BikeParking.find({}).exec()
+	ParkLocation.find({}).exec()
 		.then(function(location) {
 			res.json(location);
 		});
@@ -62,121 +62,12 @@ app.get('/allData', function (req, res, next) {
 
  // test with mini park category
 app.get('/:parkType', function (req, res, next) {
-	console.log('hit here', req.params.parkType)
-	BikeParking.find({ParkType: req.params.parkType}).exec()
+	ParkLocation.find({ParkType: req.params.parkType}).exec()
 		.then(function(miniParkList) {
 			res.json(miniParkList);
 		});
 })
- 
 
-//  // test with mini park category
-// app.get('/miniParkData', function (req, res, next) {
-// 	BikeParking.find({ParkType: 'Mini Park'}).exec()
-// 		.then(function(miniParkList) {
-// 			res.json(miniParkList);
-// 		});
-// })
-
-
-
-// app.get('/trips', function(req, res, next){
-	//OLD CODE FOR CREATING JSON WITH COORDINATES FOR POLYLINES - KEPT FOR FUTURE REFERENCE
-	// var filestream = fs.createReadStream("./data/test.csv");
-	// var converter = new Converter({ constructResult:true });
-	// converter.on("end_parsed", function(jsonObj){
-	// 	var geojson = {type:"FeatureCollection", features: []}
-	// 	// jsonObj.forEach(function(trip){
-	// 	// 	var feature = {};
-	// 	// })
-	// 	for (var i in jsonObj){
-	// 		var feature = {};
-	// 		feature.type = "Feature";
-	// 		//decode polyline for overall trip to get micro coordinates for trip
-	// 		//altered polyline.js to return [long x lat] instead of [lat x long] b/c geojson and googlemaps use different orders for coordinates
-	// 		var routeCoordinates = polyline.decode(jsonObj[i].polyline)
-	// 		console.log('routeCoordinates', routeCoordinates)
-			
-	// 		feature.geometry = {type:"LineString", coordinates: routeCoordinates}
-	// 		feature.properties = {
-	// 			key: i,
-	// 			tripDuration : jsonObj[i]["tripduration"],
-	// 			startTime : jsonObj[i]["starttime"],
-	// 			FIELD3 : jsonObj[i]["stoptime"],
-	// 			FIELD4 : jsonObj[i]["start station id"],
-	// 			FIELD5 : jsonObj[i]["start station latitude"],
-	// 			FIELD6 : jsonObj[i]["start station longitude"],
-	// 			FIELD8 : jsonObj[i]["end station id"],
-	// 			FIELD9 : jsonObj[i]["end station latitude"],
-	// 			FIELD10 : jsonObj[i]["end station longitude"],
-	// 			FIELD11 : jsonObj[i]["bikeid"]
-	// 		}
-	// 		geojson.features.push(feature)
-	// 	}
-
-	// 	res.status(200).send(geojson);
-	// })
-	// filestream.pipe(converter);
-	// function readJSONFile(filename, callback){
-	// 	fs.readFile(filename, function(err, data){
-	// 		if (err) {
-	// 			callback(err);
-	// 			return;
-	// 		}
-	// 		try {
-	// 			callback(null, JSON.parse(data));
-	// 		} catch (exception){
-	// 			callback(exception);
-	// 		}
-	// 	});
-	// };
-	var obj;
-// 	fs.readFile('./data/collection.json', 'utf8', function(err, data){
-// 		if(err) throw err;
-// 		obj = JSON.parse(data);
-// 		console.log(obj)
-// 		res.status(200).send(obj)
-// 	})
-// })
-
-// app.get('/17017trips', function(req, res, next){
-// 	var filestream = fs.createReadStream("./data/17017directions.csv");
-// 	var converter = new Converter({ constructResult:true });
-// 	converter.on("end_parsed", function(jsonObj){
-// 		var geojson = {type:"FeatureCollection", features: []}
-// 		// jsonObj.forEach(function(trip){
-// 		// 	var feature = {};
-// 		// })
-// 		for (var i in jsonObj){
-// 			var feature = {};
-// 			feature.type = "Feature";
-// 			//decode polyline for overall trip to get micro coordinates for trip
-// 			//altered polyline.js to return [long x lat] instead of [lat x long] b/c geojson and googlemaps use different orders for coordinates
-// 			var routeCoordinates = polyline.decode(jsonObj[i].polyline)
-			
-// 			feature.geometry = {type:"LineString", coordinates: routeCoordinates}
-// 			feature.properties = {
-// 				key: i,
-// 				tripDuration : jsonObj[i]["tripduration"],
-// 				startTime : jsonObj[i]["starttime"],
-// 				FIELD3 : jsonObj[i]["stoptime"],
-// 				FIELD4 : jsonObj[i]["start station id"],
-// 				startStationName : jsonObj[i]["start station name"],
-// 				FIELD5 : jsonObj[i]["start station latitude"],
-// 				FIELD6 : jsonObj[i]["start station longitude"],
-// 				FIELD8 : jsonObj[i]["end station id"],
-// 				endStationName : jsonObj[i]["end station name"],
-// 				FIELD9 : jsonObj[i]["end station latitude"],
-// 				FIELD10 : jsonObj[i]["end station longitude"],
-// 				FIELD11 : jsonObj[i]["bikeid"]
-// 			}
-// 			geojson.features.push(feature)
-// 		}
-
-// 		res.status(200).send(geojson);
-// 	})
-// 	filestream.pipe(converter);
-// })
 var port = process.env.PORT || 3000
 app.listen(port, function() {
 	console.log("The server is listening on port ", port);

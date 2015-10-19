@@ -1,6 +1,6 @@
 'use strict';
 var mongoose = require('mongoose');
-var BikeParking = new mongoose.Schema({
+var ParkLocation = new mongoose.Schema({
 	ParkName: {type: String},
 	ParkType: {type: String},
 	ParkServiceArea: {type: String},
@@ -14,6 +14,6 @@ var BikeParking = new mongoose.Schema({
 	Geo: {type: [Number], index: '2d'} 
 });
 
-var BikeParking = mongoose.model('BikeParking', BikeParking);
+var ParkLocation = mongoose.model('ParkLocation', ParkLocation);
 
-module.exports = BikeParking;
+module.exports = ParkLocation;
