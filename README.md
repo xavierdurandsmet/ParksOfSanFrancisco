@@ -2,9 +2,9 @@
 
 ### Features
 
-- See all the parks in SF and get their locations on the map
-- Filter by park type
-- Get itinerary from one park to another
+- See all the parks in SF and get their locations on the map (click on 'See all parks in SF!')
+- Filter by park type (scroll through the list and click a type to get all parks of this type displayed on the map)
+- Get itinerary from one park to another (click on 'Define Itinerary' and then click on 2 markers on the map to make the itinerary appear)
 
 ### Technologies used
 
