@@ -1,5 +1,7 @@
 'use strict';
+
 var mongoose = require('mongoose');
+
 var ParkLocation = new mongoose.Schema({
 	ParkName: {type: String},
 	ParkType: {type: String},

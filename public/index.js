@@ -55,6 +55,7 @@ function trackLocations () {
 	}
 }
 
+// get data of parks by type from the back-end
 function getData (type, fn) {
 	$.ajax({
 	    type: "GET",
@@ -103,13 +104,13 @@ $( "#remove" ).on('click', function() {
 $( "#itinerary" ).on('click', function() {
 	trackerOpen = true;
 	$( '.trip, #clearItinerary' ).css({ 'display' : 'block'});
-	// $( '#clearItinerary' ).css({ 'display' : 'block'});
+	$( '.itineraryOutput' ).html('Click on a Park Location!');
 });
 
 // clear the itinerary
 $( "#clearItinerary" ).on('click', function() {
 	$( '.trip, #clearItinerary' ).css({ 'display' : 'none'});
-	// $( '#clearItinerary' ).css({ 'display' : 'none'});
 	itineraryArr = [];
 	map.removeControl(currentRoute);
+	$( '.itineraryOutput' ).html('Click on a Park Location!');
 });

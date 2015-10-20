@@ -1,11 +1,13 @@
 body {
-	font-family: "Open Sans",Helvetica,Arial,sans-serif;
+	/*font-family: "Open Sans",Helvetica,Arial,sans-serif;*/
+	font-family: Palatino;
 	-webkit-font-smoothing: antialiased;
 	font-size: 14px;
 	margin: 0;
   	padding: 0;
   	height: 100%;
   	color: #4c9fcd;
+  	text-align: center;
 }
 
 #map { 
@@ -40,18 +42,13 @@ button, li, #typeList {
 	border-radius: 4px;
 }
 
-button:focus {
-	background-color: #4c9fcd;
-	color:white;
-	outline:none;
-}
 
 #marker {
 	fill: yellow;
 }
 
 .leaflet-popup-content-wrapper {
-  background: #000
+  background: white;
 }
 
 #typeList {
@@ -66,7 +63,20 @@ button:focus {
 	margin-right: 3%;
 	margin-top: 2%;
 	margin-bottom: 2%;
+	width:78%;
+	background-color: white;
+}
 
+#typeList button:focus {
+	background-color: #4c9fcd;
+	color:white;
+	outline:none;
+}
+
+button:focus {
+	background-color: #4c9fcd;
+	color:white;
+	outline:none;
 }
 
 p {
