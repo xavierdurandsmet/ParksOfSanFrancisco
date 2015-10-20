@@ -1,5 +1,4 @@
 body {
-	/*font-family: "Open Sans",Helvetica,Arial,sans-serif;*/
 	font-family: Palatino;
 	-webkit-font-smoothing: antialiased;
 	font-size: 14px;
@@ -22,7 +21,6 @@ body {
 	height:100vh;
 	float:left;
 	font-size:1.1em;
-	/*border:2px solid #43BFE0;*/
 }
 
 #remove {}

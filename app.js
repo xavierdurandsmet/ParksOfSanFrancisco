@@ -71,7 +71,7 @@ app.get('/allData', function (req, res, next) {
 		.then(null, next);
 })
 
- // test with mini park category
+ // get data by park type
 app.get('/:parkType', function (req, res, next) {
 	ParkLocation.find({ParkType: req.params.parkType}).exec()
 		.then(function(miniParkList) {
